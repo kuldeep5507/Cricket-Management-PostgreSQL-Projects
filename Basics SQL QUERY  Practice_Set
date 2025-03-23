@@ -1,0 +1,829 @@
+/* 
+
+Here We Make Some Basics SQL Query for Practice That's Give us A proper Guidenes for Our Future SQL Career.
+
+" SELECT " Most Basic statement SQL & Used to select and return data.
+
+                 _ SYNTAX _  " SELCT column_name FROM Table_name "
+
+*/
+
+SELECT player_name
+FROM player;
+
+-- Select Multiple Column such as 
+
+SELECT player_name, dob, country
+FROM player;
+
+-- Select All Columns
+SELECT *
+FROM Player;
+
+--Formattings doesn't matter!, Such as. .. ... 
+-- TYPE(1)
+SELECT player_name
+,dob
+,country
+FROM player;
+
+-- TYPE(2)
+SELECT player_name,dob,country
+FROM player;
+
+-- TYPE(3)
+SELECT player_name,dob,country
+
+FROM player;
+
+-- TYPE(4)
+SELECT player_name,dob,country FROM player;
+
+/*
+
+Let's Practice Session begin.
+
+Question (1). Print list of All Player_name from table player.
+Question (2). Print list of All player from table t20_century.
+Question (3). Print list of player with runs from table t20_century.
+Question (4). Print list of Player with runs From table odi_career.
+Question (5). Print list of player, matches, runs, country from table odi_career. 
+
+*/
+
+" ORDER BY " 
+ _ *. Used to order results based on a column.
+ _ *. Alphabetically, numberically, Chronologically etc.
+
+/*
+
+SYNTAX
+
+SELECT Column_name1,
+Column_name2
+FROM Table_name
+ORDER BY Column_name1 ASC/DESC;
+
+Where 
+ASC - Ascending Order - Increasing Order
+DESC - Descending Order - Decreasing Order
+
+*/
+
+
+SELECT player
+FROM odi_career
+ORDER BY player ASC;
+
+
+SELECT player
+FROM odi_career
+ORDER BY player DESC;
+
+SELECT *
+FROM odi_career
+ORDER BY matches ASC;
+
+
+SELECT *
+FROM odi_career
+ORDER BY runs DESC;
+
+-- Multiple columns
+SELECT player, matches, runs, hs, 100 C
+FROM odi_career
+ORDER BY player ASC, runs DESC;
+
+/*
+
+Let's Practice Session begin.
+
+Question (1). Print list of All Player_name from table player ORDER BY ASC With player_name.
+Question (2). Print list of All player from table t20_century ORDER BY runs DESC.
+Question (3). Print list of player with runs from table t20_century ORDER BY Any random selected column.
+
+*/
+
+
+-- *. " SELECT DISTINCT "
+-- *. Used to SELECT the DISTINCT values in a table.
+
+/*
+             SYNTAX
+
+SELECT DISTINCT Column_name
+FROM Table_name
+
+*/
+
+SELECT * FROM T20_century; -- 24 Rows 
+
+
+SELECT DISTINCT  player    -- 12 Rows
+FROM t20_century;   
+
+
+SELECT DISTINCT runs   -- 21 Rows
+FROM t20_century;
+
+
+SELECT DISTINCT opposition, team --11 Rows
+FROM t20_century
+ORDER BY opposition ASC;
+
+/*
+
+Let's Practice Session begin.
+
+Question (1). Print list of Distinct Player_name from table player.
+Question (2). Print list of DISTINCT player from table t20_century.
+Question (3). Print list of DISTINCT player with runs from table t20_century ORDER BY Any random selected column.
+
+*/
+
+--" LIMIT "
+/*
+
+*. Used to "LIMIT" the number of rows in the output.
+*. Always at the very end of your Query.
+*. Can help to get a quick idea about a table.
+
+              SYNTAX
+
+ SELECT Column_name1, Column_name2
+ FROM Table_name
+ LIMI N;
+
+              OR
+
+ SELECT Column_name1, Column_name2
+ FROM Table_name
+ LIMI 5;			  
+
+*/
+
+-- Before "LIMIT"
+SELECT *     -- 25 Rows
+FROM odi_cap; 
+
+-- After " LIMIT " Top five or "5" ODI_CAP are picked From all ODI_CAP.
+SELECT *    -- 5 Rows
+FROM odi_cap 
+LIMIT 5;
+
+-- After " LIMIT " Top Ten or "10" ODI_CAP are picked From all ODI_CAP.
+SELECT *   -- 10 Rows
+FROM odi_cap
+LIMIT 10;
+
+
+SELECT name, played, won, lost  -- 5 Rows
+FROM odi_cap
+ORDER BY played DESC
+LIMIT 5;
+
+/*
+                _COUNT_
+
+* Used to count the number of Rows in a Output.
+* Used often in combination with grouping & Filtering.
+
+                _SYNTAX_
+
+ SELECT COUNT(*)
+ FROM Table_name;
+
+					   OR 
+					   
+ SELECT COUNT(column_name)
+ FROM Table_name;
+
+ 
+_* Nulls will not be counted in that case!.
+
+*/
+
+SELECT * FROM player;
+
+SELECT COUNT(*) 
+FROM test_player;
+
+SELECT COUNT(ca)
+FROM test_player;
+
+SELECT COUNT(DISTINCT country) -- 11 Rows
+FROM player;
+
+SELECT COUNT(DISTINCT player_name) -- 523 Rows
+FROM player;
+
+-- Multiple Columns
+
+SELECT DISTINCT dob, batting_hand 
+FROM player
+ORDER BY batting_hand ASC;
+
+/*
+            _WHERE_
+
+* Used to FILTER the data in the Output.
+* Always after FROM.
+             _SYNTAX_
+
+SELECT Column_name1, Column_name2
+FROM Table_name
+WHERE Condition;
+
+*/
+
+SELECT * FROM odi_career;
+
+SELECT *
+FROM odi_career
+WHERE runs>=5000;
+
+SELECT player, runs
+FROM odi_career
+WHERE (runs>=10000);
+
+SELECT player, hs, batavg
+FROM odi_career
+WHERE (batavg>=35.00)
+ORDER BY player ASC
+LIMIT 5;
+
+SELECT player, matches, wkts
+FROM odi_career
+WHERE (wkts>=100)
+ORDER BY wkts ASC
+LIMIT 10;
+
+SELECT player, hs, batavg, "100 C"
+FROM odi_career
+WHERE ("100 C">=20)
+ORDER BY "100 C" DESC
+LIMIT 5;
+ /*
+             _ AND / OR _
+
+*Used to connect two conditions.
+
+              _ SYNTAX _
+
+SELECT column_name1, Column_name2
+FROM Table_name
+WHERE condition1
+AND Condition2
+AND Condition3;
+
+*/
+
+--AND Uses
+SELECT player, matches, runs, batavg
+FROM odi_career
+WHERE runs>=10000
+AND batavg>=35.39;
+
+--OR Uses
+SELECT player, matches, runs, wkts
+FROM odi_career
+WHERE runs>=10000
+OR wkts>=250;
+
+--AND / OR Uses
+SELECT player, Matches, runs, wkts
+FROM odi_career
+WHERE matches>=250
+OR batavg>=50.01
+AND runs>=10000;
+
+/*
+
+              _ LIKE _
+
+* Used to filter by matching against a pattern.
+* Use wildcards: _ any single character.
+* Use wildcards: % any sequence of characters.
+
+               _ SYNTAX _
+
+SELECT *
+FROM Table_name
+WHERE Column_name1 LIKE 'A%';
+                                 OR
+								 
+SELECT *
+FROM Table_name
+WHERE Column_name1 LIKE '%A';
+                                 OR
+								 
+SELECT *
+FROM Table_name
+WHERE Column_name1 LIKE '_a';
+                                  OR
+SELECT *
+FROM Table_name
+WHERE Column_name1 LIKE 'a_';
+
+*/
+
+SELECT *
+FROM test_player
+WHERE cap LIKE '__5'
+
+SELECT name, mat, runs, wkt
+FROM test_player
+WHERE cap LIKE '10_'
+
+/*
+                     _ ALIASES _
+
+* Aliases are used to temporarily give a new, more readable 
+  name to a table or column within a query.
+* Making complex queries easier to understand by providing shorter, 
+  more descriptive labels for long or technical column names, ultimately
+  improving the clarity of the query results. 
+
+                      _ SYNTAX _
+
+SELECT COUNT(*) AS Total_count
+FROM table_name
+WHERE Condition1
+AND Condition2
+OR Condition3;
+
+*/
+
+/*
+
+                       _ Aggregation Functions _
+
+* Aggregate vaues in multiple rows to one value.
+* Most Common aggregation functions.
+  - SUM()
+  - AVG()
+  - MAX()
+  - MIN()
+  - COUNT()
+  
+*/
+
+/*
+           _ SYNTAX _ 
+
+SELECT SUM(Column_name)
+FROM Table_name;
+
+*/
+
+SELECT SUM(runs) AS Sum_of_Runs -- " AS " is used to rename the Sum Function.
+FROM ODI_player;
+
+SELECT SUM(wkts) AS Sum_of_Wickets
+FROM odi_career;
+
+/*
+           _ SYNTAX _ 
+
+SELECT AVG(Column_name)
+FROM Table_name;
+
+*/
+
+SELECT AVG(Matches) AS Average_of_Matches
+FROM odi_career;
+
+SELECT AVG(catches) AS Average_of_catches
+FROM odi_career;
+
+/*
+           _ SYNTAX _ 
+
+SELECT COUNT(*)
+FROM Table_name;
+
+*/
+
+SELECT COUNT(*) AS Total_count
+FROM odi_career;
+
+/*
+           _ SYNTAX _ 
+_ * _ To get the Minimun Value from entire specific column name.
+
+SELECT MIN(Column_name)
+FROM Table_name;
+
+*/
+
+
+SELECT MIN(Matches) AS Min_from_Matches
+FROM odi_career;
+
+SELECT MIN(runs) AS Min_from_runs
+FROM odi_career;
+
+/*
+           _ SYNTAX _ 
+_ * _ To get the Maximun Value from entire specific column name.
+
+SELECT MAX(Column_name)
+FROM Table_name;
+
+*/
+
+
+SELECT MAX(Matches) AS Max_from_Matches
+FROM odi_career;
+
+SELECT MAX(runs) AS Max_from_runs
+FROM odi_career;
+
+/*
+           _ SYNTAX _ 
+_ * _ To get the Round of value after point at 2, 3, 5,......n.
+
+SELECT ROUND(AVG(Column_name), 2)
+FROM Table_name;
+
+*/
+
+SELECT
+ROUND(AVG(Matches), 2) AS Average_of_Matches
+FROM odi_career;
+
+
+SELECT ROUND(AVG(catches), 3) AS Average_of_catches
+FROM odi_career;
+
+
+
+/*
+               _ SYNTAX _
+ _ * _ Multiple aggregations is possible!
+
+SELECT AVG(Column_name), 
+       COUNT(Column_name),
+	   SUM(Column_name)
+FROM Table_name;
+
+*/
+
+
+--Before Round off the point in AVG.
+SELECT AVG(Matches) AS Average_of_Matches, 
+       COUNT(player) AS Total_player, 
+	   SUM(runs) AS Total_runs
+FROM odi_career;
+
+--After Round off 3 after the point in AVG.
+SELECT ROUND(AVG(Matches), 3) AS Average_of_Matches, 
+       COUNT(player) AS Total_player, 
+	   SUM(runs) AS Total_runs
+FROM odi_career;
+
+
+/*
+
+" You are never too old to set
+another goal or to dream a new dream.” 
+
+*/
+
+/*
+      # GROUP BY
+__* Used to GROUP Aggregrations BY Specific Columns.
+	                _ SYNTAX _
+
+SELECT Column_name1,
+SUM(Column_name2)     --In Place of "SUM" Used any Aggregation Functions.
+FROM Tbale_name
+GROUP BY Column_name1;
+
+*/
+
+SELECT * FROM odi_cap;
+
+SELECT COUNT(toss_winner_id) AS Total_winner
+, team_name_id
+FROM match
+GROUP BY team_name_id
+
+SELECT MAX(played) AS Total_played
+, name
+FROM odi_cap
+GROUP BY name
+ORDER BY Total_played ASC;
+
+SELECT COUNT(toss_winner_id) AS Total_toss_winner
+, team_name_id
+FROM match
+GROUP BY team_name_id
+ORDER  BY Total_toss_winner DESC
+LIMIT 5;
+
+/*
+      #_ HAVING 
+
+  _*. Used to filter GROUPING by Aggregations.
+  _*. Having an only be used with GROUP BY!.
+
+             _ SYNTAAX _
+
+SELECT Column_name1,
+SUM(Column_name2)
+FROM Table_name
+GROUP BY Column_name1
+HAVING SUM(Column_name2)>(Condition)
+
+*/
+
+
+SELECT name,
+SUM(win)
+FROM odi_cap
+GROUP BY name
+HAVING SUM(win)>(50);
+
+SELECT name,
+SUM(win)
+FROM odi_cap
+GROUP BY name
+HAVING SUM(win)>(80);
+
+SELECT name,
+SUM(played)
+FROM odi_cap
+GROUP BY name
+HAVING SUM(played)>(20);
+
+/*
+      #_ SUBSTRING 
+
+  _*. The SUBSTRING function extracts a portion (substring) of a string.
+  _*. Allowing you to manipulate and analyze textual data effectively by 
+      specifying the starting position and length.
+
+             _ SYNTAAX _
+
+SELECT SUBSTRING (String From Start [For Length])
+FROM Table_name;
+
+				  _ OR _
+
+SELECT SUBSTRING(Column_name FROM POSITION(' , ' in Column_name) FOR 10) AS ExtractString
+FROM Column_name;
+
+ Here, 
+      String : Column/String That we want to extract from.
+	  Start : Position where to start from ?
+	  Length : How many Character ?
+
+ Example : 
+          SUBSTRING(eamil FROM 2 for 3 )
+		  
+*/
+
+
+SELECT SUBSTRING(team1_players FROM 1 FOR 10) AS ExtractString
+FROM match_info
+LIMIT 1;
+
+SELECT SUBSTRING(team1 FROM 1 FOR 10) AS ExtractString
+FROM match_info;
+
+SELECT SUBSTRING(venue FROM POSITION(' , ' in venue) FOR 10) AS ExtractString
+FROM match_info;
+
+/*
+            #_ EXTRACT
+
+ _ *. Used to EXTRACT parts of Timestamp/date
+ _ *. EXTRACT() function allows you to extract a specific
+      unit from a date. 
+ _ *. If you only want the Year, Month, or Day, you can use extract() to access those values. 
+
+               _ SYNTAX _
+
+SELECT EXTARCT( Column_name FROM Date/Time/Interval)
+
+ WHERE, 
+       Column_name : Part of Date/Time.
+	   Date/Time : That we want to extract From.
+
+*/
+
+SELECT CURRENT_DATE;
+
+SELECT CURRENT_TIME;
+
+
+/*
+
+            _ #  TO_CHAR 
+
+  _ *. Used to get custom formats timestamp/date/numbers.
+  _ *. The PostgreSQL TO_CHAR() function converts a timestamp, 
+        an interval, an integer, a double-precision, or a numeric 
+		 value to a string.
+		 
+                  _ SYNTAX _
+
+TO_CHAR(Column_name, format)
+
+WHERE,  
+        Column_name : Date/Time/Interval/Number  
+		Format
+
+*/
+
+
+SELECT TO_CHAR(match_date, 'MM-YYYY' )
+
+SELECT TO_CHAR(match_date, 'DD-MM-YYYY' )
+FROM match_info;
+
+SELECT TO_CHAR(match_date, 'YYYY-MM-DD' )
+FROM match_info;
+
+
+SELECT
+    TO_CHAR(
+        TIMESTAMP '2017-08-18 22:30:59',
+        'HH12:MI:SS');
+		
+-- To Know Current Day/Date/Time
+
+TO_CHAR(current_timestamp, 'Day, DD  HH12:MI:SS');
+
+
+/*
+                 _ #Mathematical Functions and Operators
+
+	Such As _ Addition, Subtraction, Multiplication, Division, Modulo etc.	 
+
+                   _ SYNTAX _
+
+SUM( Column_name ) Oprator(+, -, *, / ) Number
+
+*/
+
+SELECT * FROM T20_Century;
+
+SELECT SUM(balls) + '100'
+FROM t20_century;
+
+SELECT AVG(balls) * '10'
+FROM t20_century;
+
+/*
+               _ # CASE 
+
+  _ *. Like IF/THEN statement
+       Goes through a set of conditions returns a value if a condition is met.
+
+                  _ SYNTAX _
+
+SELECT Column_name
+CASE 
+WHEN Column_name THEN result1
+WHEN Column_name THEN result2
+WHEN Column_name THEN result3
+ELSE result
+END 
+FROM Table_name;
+
+*/
+
+SELECT won,
+CASE 
+WHEN won >= 100 THEN 'Legend'
+WHEN won >= 80 THEN 'Great'
+ELSE 'Master'
+END 
+FROM odi_cap;
+
+
+SELECT player, wkts,
+CASE 
+WHEN wkts >= 250 THEN 'Legend'
+WHEN wkts >= 150 THEN 'Great'
+ELSE 'Master'
+END 
+FROM odi_career
+ORDER BY wkts ASC;
+
+
+/*
+          _ # REPLACE
+
+	_ *. Replaces text from a String in a column with another text.
+
+	               _ SYNTAX _ 
+
+	SELECT REPLACE ( Column_name, Old_text, New_text );
+	
+*/
+
+--Use to replace Any specific string.
+SELECT REPLACE('I Love Lucknow Too Much', 'Lucknow', 'Gorakhpur') AS replaced_string;
+
+--Use to replace Any specific Place_holder Character Such as "L" : "LL".
+SELECT REGEXP_REPLACE('I Love Lucknow Too Much', 'L', 'LL') AS replaced_string;
+
+
+--Use to replace First specific stringS uch as " I ": " YOU ".
+SELECT REGEXP_REPLACE('I Loved Lucknow Too Much', '^.', 'You') AS replaced_string;
+
+
+/*
+           _ # JOINS
+
+    _ *. Combine information from multiple tables in one query.
+	_ *. A Join Clause combines rows from two or more tables on a related
+	     column between them.
+    _ *. It Allowing you to retrieve data from multiple tables if they have
+	     Matched Records or Column_name.
+	
+	
+	(1.)  INNER JOIN : 
+	     _ *. Returns only the rows where there is a match in both tables.
+		 _ *. Inner Join easiest join type.
+		 _ *. Helps to understand the general concept of joins.
+
+
+		           _ SYNTAX _
+
+    SELECT * 
+	FROM table_name1
+	INNER JOIN table_name2
+	ON table_name1.Column_name = Table_name2.Column_name
+
+*/
+
+SELECT * 
+FROM test_cap
+INNER JOIN test_player
+ON test_cap.name = test_player.name;
+
+SELECT * 
+FROM odi_cap
+INNER JOIN odi_player
+ON odi_cap.name = odi_player.name;
+
+
+/*
+    _ *. Always need a common column / reference.
+	_ *. INNER JOIN : Only rows where reference column value is in both tables.
+    _ *. Order of tables (Table_number1 and Table_number2 / Table_number2 and Table_number1 )
+    _ *. Repeated values in either table will also be repeated.
+
+
+	       _ # FULL OUTER JOIN
+
+	_ *.This join operation retrieves all rows from both tables involved 
+	     in the join, including unmatched rows from each table.
+
+	_ *. For any unmatched rows, PostgreSQL fills the result with NULL values for the 
+	     columns of the table lacking a match.
+
+*/
+
+
+SELECT * FROM test_player
+FULL OUTER JOIN test_cap
+ON test_player.name = test_cap.name;
+
+
+SELECT * FROM odi_player
+FULL OUTER JOIN odi_cap
+ON odi_player.name = odi_cap.name;
+
+
+/*
+
+       _  #. UNION 
+
+	_ *. Combining multiple select statements.
+	_ *. Columns are matched by the order!
+	_ *. Must be Aware of the order in the match.
+	_ *. Duplicats are decoupled.
+	_ *. Data Types must Matche.
+
+
+                 	_ SYNTAX _
+
+	SELECT column_name1, Column_name2 FROM Table_name1
+	UNION
+	SELECT Column_name1
+
+*/
+
+SELECT player_name, country FROM player
+UNION
+SELECT player, team FROM t20_century;
+
+SELECT name FROM test_player
+UNION
+SELECT name FROM test_cap;
+
